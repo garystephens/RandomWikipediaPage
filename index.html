@@ -2,6 +2,8 @@
 <head>
 	<title>Random Wikipedia Page Selector</title>
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128490828-1"></script>
 	<script>
@@ -23,30 +25,49 @@
 
 	<script>
 
-		function openRandomPage() {
-
+		function requestOpenRandomPage() {
 			var topN = $("#topN").val();
+			saveValueForTopN(topN);
+			logToGoogleAnalytics(topN);
+			openPageIfTopNValid(topN);
+		}
 
-			Cookies.set('topN', topN, { expires: 999999 });
+		function openPageIfTopNValid(topN) {
+			var url;
+			var rank;
 
+			if (isNaN(topN) || Number(topN) > paths.length) {
+				alert("Please enter a number less than or equal to " + paths.length)
+			} else {
+				rank = Math.floor(Math.random() * Number(topN));
+				url = "https://en.wikipedia.org/wiki/" + paths[rank];
+				window.open(url);
+				$("#lastPageOpened").text(url).attr("href", url);
+				$("#rank").text("(rank " + rank + ")");
+			}
+		}
+
+		function logToGoogleAnalytics(topN) {
 			gtag('event', topN, {
 				'event_category': 'open',
 				'event_label': topN,
 				'value': Number(topN)
 			});
-
-			if (isNaN(topN) || Number(topN) > paths.length) {
-				alert("Please enter a number less than or equal to " + paths.length)
-			} else {
-				window.open("https://en.wikipedia.org/wiki/" + paths[Math.floor(Math.random() * Number(topN))]);
-			}
 		}
 
-		$(document).ready(function () {
+		function saveValueForTopN(topN) {
+			Cookies.set('topN', topN, { expires: 999999 });
+		}
+
+		function useSavedValueForTopN() {
 			var topN = Cookies.get('topN');
 			if (topN !== undefined) {
 				$("#topN").val(topN);
 			}
+		}
+
+		$(document).ready(function () {
+			useSavedValueForTopN();
 		});
 
 	</script>
@@ -56,13 +77,18 @@
 	<br />
 	<h1>Random Wikipedia Page Selector</h1>
 	<br />
-	<input style="font-size:16px; font-weight:bold;" type="button" onclick="openRandomPage()" value="Open Random Page" />
+	<input style="font-size:16px; font-weight:bold;" type="button" onclick="requestOpenRandomPage()" value="Open Random Page" />
 	<br />
 	<br />
 	<br />
 	Select page from top <input id="topN" type="text" value="5000" style="width:60px"> Wikipedia entries*
 	<br />
 	(maximum 200,000)
+	<br />
+	<br />
+	Last page opened:
+	<a id="lastPageOpened" href="" target="_new"></a>
+	<span id="rank"></span>
 	<br />
 	<br />
 	<span class="smallprint">* Pages are sorted based on their Google <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> score.</span>
