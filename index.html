@@ -14,63 +14,13 @@
 		gtag('config', 'UA-128490828-1');
 	</script>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			crossorigin="anonymous"></script>
-
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 	<script type="text/javascript" src="paths.js"></script>
+	<script type="text/javascript" src="scripts.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="styles.css">
-
-	<script>
-
-		function requestOpenRandomPage() {
-			var topN = $("#topN").val();
-			saveValueForTopN(topN);
-			logToGoogleAnalytics(topN);
-			openPageIfTopNValid(topN);
-		}
-
-		function openPageIfTopNValid(topN) {
-			var url;
-			var rank;
-
-			if (isNaN(topN) || Number(topN) > paths.length) {
-				alert("Please enter a number less than or equal to " + paths.length)
-			} else {
-				rank = Math.floor(Math.random() * Number(topN));
-				url = "https://en.wikipedia.org/wiki/" + paths[rank];
-				window.open(url);
-				$("#lastPageOpened").text(url).attr("href", url);
-				$("#rank").text("(rank " + rank + ")");
-			}
-		}
-
-		function logToGoogleAnalytics(topN) {
-			gtag('event', topN, {
-				'event_category': 'open',
-				'event_label': topN,
-				'value': Number(topN)
-			});
-		}
-
-		function saveValueForTopN(topN) {
-			Cookies.set('topN', topN, { expires: 999999 });
-		}
-
-		function useSavedValueForTopN() {
-			var topN = Cookies.get('topN');
-			if (topN !== undefined) {
-				$("#topN").val(topN);
-			}
-		}
-
-		$(document).ready(function () {
-			useSavedValueForTopN();
-		});
-
-	</script>
 
 </head>
 <body>
@@ -81,9 +31,12 @@
 	<br />
 	<br />
 	<br />
-	Select page from top <input id="topN" type="text" value="5000" style="width:60px"> Wikipedia entries*
+	Randomly select page from rank
+	<input id="start" type="text" value="1" style="width:60px">
+	to rank
+	<input id="finish" type="text" value="5000" style="width:60px"> *
 	<br />
-	(maximum 200,000)
+	<span class="smallprint">(minimum 1 / maximum 200,000)</span>
 	<br />
 	<br />
 	Last page opened:
@@ -91,7 +44,7 @@
 	<span id="rank"></span>
 	<br />
 	<br />
-	<span class="smallprint">* Pages are sorted based on their Google <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> score.</span>
+	<span class="smallprint">* Pages are ranked based on their Google <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> score.</span>
 	<br />
 	<br />
 	<span class="smallprint">Page developed by <a href="http://www.twitter.com/garystephens">Gary Stephens</a></span>
