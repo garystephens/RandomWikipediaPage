@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Random Wikipedia Page Selector</title>
@@ -18,36 +19,37 @@
 	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 	<script type="text/javascript" src="paths.js"></script>
-	<script type="text/javascript" src="scripts.js"></script>
+	<script type="text/javascript" src="index.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="styles.css">
 
 </head>
 <body>
-	<br />
-	<h1>Gary's Random Wikipedia Page Selector</h1>
-	<br />
-	<input style="font-size:16px; font-weight:bold;" type="button" onclick="requestOpenRandomPage()" value="Open Random Page" />
-	<br />
-	<br />
-	<br />
-	Randomly select page from rank
-	<input id="start" type="text" value="1" style="width:60px">
-	to rank
-	<input id="finish" type="text" value="5000" style="width:60px"> *
-	<br />
-	<span class="smallprint">(minimum 1 / maximum 200,000)</span>
-	<br />
-	<br />
-	Last page opened:
-	<a id="lastPageOpened" href="" target="_new"></a>
-	<span id="rank"></span>
-	<br />
-	<br />
-	<span class="smallprint">* Pages are ranked based on their Google <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a> score.</span>
-	<br />
-	<br />
-	<span class="smallprint">Page developed by <a href="http://www.twitter.com/garystephens">Gary Stephens</a></span>
+	<div id="header">
+		<h1>Gary's Random Wikipedia Page Selector</h1>
+		<div id="controls">
+			<input style="font-size:16px; font-weight:bold;" type="button" onclick="requestOpenRandomPage()" value="Open Random Page" />
+			from rank
+			<input id="start" type="text" value="1" style="width:45px">
+			to
+			<input id="finish" type="text" value="5000" style="width:45px">
+			<span class="smallprint" style="white-space:pre">(min 1 / max 200,000)</span>
+		</div>
+		<div style="width:100%; background-color:#EEEEEE; padding-top:2px; padding-bottom:2px">
+			<span id="rank">&nbsp;</span>
+		</div>
+	</div>
+	<iframe id="wikipediaPageIframe" src="placeholder.html"></iframe>
+	<div id="footer" style="background-color:#EEEEEE; padding:4px">
+		<div style="float:left">
+			<span class="smallprint" style="padding-right:10px">Pages are ranked by their Google <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a>.</span>
+		</div>
+		<div style="float:right">
+			<span class="smallprint">Developed by <a href="http://www.twitter.com/garystephens">Gary Stephens</a></span>
+		</div>
+		<div style="clear:both">
+		</div>
+	</div>
 </body>
 </html>
 
