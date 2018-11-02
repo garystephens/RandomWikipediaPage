@@ -10,8 +10,9 @@ body {
 	padding: 0;
 }
 		
-.smallprint {
+.minMaxRules {
 	font-size: 11px;
+	white-space: pre;
 }
 
 #wikipediaPageIframe {
@@ -22,7 +23,7 @@ body {
 }
 
 h1 {
-	background-color: #FFCC22;
+	background-color: #b8e4e2;
 	margin-top: 0;
 	margin-bottom: 0;
 	padding: 4px;
@@ -31,6 +32,7 @@ h1 {
 #controls {
 	padding-top: 8px;
 	padding-bottom: 8px;
+	background-color: #b4e5e35e;
 }
 
 #openRandomPage {
@@ -39,7 +41,7 @@ h1 {
 }
 
 #footer {
-	background-color:#f8edcc;
+	background-color: #b8e4e2;
 	font-size: 12px;
 	padding: 6px;
 }
