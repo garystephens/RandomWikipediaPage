@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var iframeLoadCount = 0;
+
+$(document).ready(function () {
     useSavedValueForStart();
     useSavedValueForFinish();
     setIframeHeight();
@@ -43,12 +45,19 @@ function openPageIfBoundsAreValid(start, finish) {
     rank = Number(start) + (Math.round(Math.random() * Number(finish - start)));
     url = "https://en.wikipedia.org/wiki/" + paths[rank];
 
+    iframeLoadCount = 0;
     $("#wikipediaPageIframe").attr("src", url);
 
     $("#rank").text(rank);
     $("#pageInfo").css("visibility", "visible");
 }
 
+function iframeHasLoaded() {
+    iframeLoadCount++;
+    if (iframeLoadCount > 1) {
+        $("#pageInfo").css("visibility", "hidden");
+    }
+}
 function logToGoogleAnalytics(start, finish) {
     gtag('event', start, {
         'event_category': 'open-start',
