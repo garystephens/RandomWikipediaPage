@@ -9,9 +9,6 @@ $(window).resize(function () {
 });
 
 function setIframeHeight() {
-    console.log($(window).height());
-    console.log($("#header").outerHeight());
-    console.log($("#footer").outerHeight());
     $("#wikipediaPageIframe").height($(window).height() - $("#header").outerHeight() - $("#footer").outerHeight());
 }
 
