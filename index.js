@@ -45,7 +45,8 @@ function openPageIfBoundsAreValid(start, finish) {
 
     $("#wikipediaPageIframe").attr("src", url);
 
-    $("#rank").text("Rank of page shown: " + rank);
+    $("#rank").text(rank);
+    $("#pageInfo").css("visibility", "visible");
 }
 
 function logToGoogleAnalytics(start, finish) {
@@ -83,3 +84,6 @@ function useSavedValueForFinish() {
     }
 }
 
+function openPageInNewTab() {
+    window.open($("#wikipediaPageIframe").attr("src"));
+}
