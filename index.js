@@ -11,7 +11,7 @@ $(window).resize(function () {
 });
 
 function setIframeHeight() {
-    $("#wikipediaPageIframe").height($(window).height() - $("#header").outerHeight() - $("#footer").outerHeight());
+    $("#wikipedia_page_iframe").height($(window).height() - $("#header").outerHeight() - $("#footer").outerHeight());
 }
 
 function requestOpenRandomPage() {
@@ -46,9 +46,9 @@ function openPageIfBoundsAreValid(start, finish) {
     url = "https://en.wikipedia.org/wiki/" + paths[rank];
 
     iframeLoadCount = 0;
-    $("#wikipediaPageIframe").attr("src", url);
+    $("#wikipedia_page_iframe").attr("src", url);
 
-    $("#rank").text(rank);
+    $("#rank").text(addCommas(rank));
     $("#pageInfo").css("visibility", "visible");
 }
 
@@ -94,5 +94,17 @@ function useSavedValueForFinish() {
 }
 
 function openPageInNewTab() {
-    window.open($("#wikipediaPageIframe").attr("src"));
+    window.open($("#wikipedia_page_iframe").attr("src"));
+}
+
+function addCommas(nStr) {
+    nStr = String(nStr);
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
 }
