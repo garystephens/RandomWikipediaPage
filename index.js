@@ -4,6 +4,7 @@ $(document).ready(function () {
     useSavedValueForStart();
     useSavedValueForFinish();
     setIframeHeight();
+    requestOpenRandomPage();
 });
 
 $(window).resize(function () {
