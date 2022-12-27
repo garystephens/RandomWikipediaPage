@@ -1,66 +1,105 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Random Wikipedia Page Selector</title>
+  <head>
+    <title>Random Wikipedia Page Selector</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico" />
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128490828-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-128490828-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-		gtag('config', 'UA-128490828-1');
-	</script>
+      gtag("config", "UA-128490828-1");
+    </script>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <!-- Google Analytics 4 -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2YY996FL5L"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-2YY996FL5L");
+    </script>
 
-	<script type="text/javascript" src="paths.js"></script>
-	<script type="text/javascript" src="index.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="general.css">
-	<link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="paths.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 
-</head>
-<body>
-	<div id="header">
-		<h1>Gary's Random Wikipedia Page Selector</h1>
-		<div id="controls">
-			<input id="openRandomPage" type="button" onclick="requestOpenRandomPage()" value="Open Random Page" />
-			from rank
-			<input id="start" type="text" value="1" style="width:50px">
-			to
-			<input id="finish" type="text" value="10000" style="width:50px">
-			<span class="minMaxRules">(min 1 / max 200,000)</span>
-		</div>
-		<div id="pageInfoRow">
-			<div id="pageInfo" style="visibility:hidden">
-				This page's rank: <span id="rank">&nbsp;</span>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input style="font-size:12px;" type="button" onclick="openPageInNewTab()" value="Open in new tab" />
-			</div>
-		</div>
-	</div>
-	<iframe id="wikipedia_page_iframe" name="wikipedia_page_iframe" src="" onload="iframeHasLoaded()"></iframe>
-	<div id="footer">
-		<div style="float:left">
-			<span style="padding-right:10px">
-				Pages are ranked by their Google
-				<a href="https://en.wikipedia.org/wiki/PageRank" target="wikipedia_page_iframe">PageRank</a>.
-			</span>
-		</div>
-		<div style="float:right">
-			<span>
-				<a href="about.html">About this site</a>
-			</span>
-		</div>
-		<div style="clear:both">
-		</div>
-	</div>
-</body>
+    <link rel="stylesheet" type="text/css" href="general.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
+  <body>
+    <div id="header">
+      <h1>Gary's Random Wikipedia Page Selector</h1>
+      <div id="controls">
+        <input
+          id="openRandomPage"
+          type="button"
+          onclick="requestOpenRandomPage()"
+          value="Open Random Page"
+        />
+        from rank
+        <input id="start" type="text" value="1" style="width: 50px" />
+        to
+        <input id="finish" type="text" value="10000" style="width: 50px" />
+        <span class="minMaxRules">(min 1 / max 200,000)</span>
+      </div>
+      <div id="pageInfoRow">
+        <div id="pageInfo" style="visibility: hidden">
+          This page's rank: <span id="rank">&nbsp;</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+            style="font-size: 12px"
+            type="button"
+            onclick="openPageInNewTab()"
+            value="Open in new tab"
+          />
+        </div>
+      </div>
+    </div>
+    <iframe
+      id="wikipedia_page_iframe"
+      name="wikipedia_page_iframe"
+      src=""
+      onload="iframeHasLoaded()"
+    ></iframe>
+    <div id="footer">
+      <div style="float: left">
+        <span style="padding-right: 10px">
+          Pages are ranked by their Google
+          <a
+            href="https://en.wikipedia.org/wiki/PageRank"
+            target="wikipedia_page_iframe"
+            >PageRank</a
+          >.
+        </span>
+      </div>
+      <div style="float: right">
+        <span>
+          <a href="about.html">About this site</a>
+        </span>
+      </div>
+      <div style="clear: both"></div>
+    </div>
+  </body>
 </html>
-
